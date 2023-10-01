@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>061022</title>
+</head>
+<body>
+   
+<div class="book">
+  <div id="pages" class="pages">
+    <div class="page">Bonito ?
+      Bonito es tenerte a ti 
+      Ábrelo bebé 
+    <br>
+    <img class="jg" src="gifcituu.gif">
+  </div>
+    <div class="page"></div>
+    <div class="page">
+      Tus ojitos tan bellos,que desde te conocí pude notar lo bonito que son.
+      Esa mirada tan tierna,ese hoyuelo que espantó mi rutina ,tu voz tan dulce , tan tranquilizante.
+      
+      Tu abrazado a mi , mientras nuestros corazones se empezaban a conocer y conectar .
+      <img class="aww" src="awww.jpg">
+      <br>
+     
+    <img class="flechita" src="flechita.png"></div>
+    <div class="page"></div>
+    <div class="page"> Poco a poco fui acercándome más y más a tus bellos detalles . Detalles los cuales brillan a más no poder , brillan mucho , tanto que sin estar algunos días cerca de ti , me hacen sonreír.
+      Me hacen derramar lágrimas de felicidad , de que tengo a un tesoro conmigo , a alguien a quien le brilla la sonrisa , alguien que para mí tiene los ojos más bonitos de este universo .
+      Esos ojos dónde encuentro paz
+      Esa nariz tan linda.
+      Esos labios esponjosos ,que provocan que quiero besarlos cada segundo .
+      Ese cuerpo tan más hermoso .
+      Tu cabello brilloso y lacio .
+      Esos gestos , esa forma tuya de ser ilumina mi corazón
+      A pesar de lo que pasamos , te seguía y te sigo eligiendo segundo por segundo,minuto por minuto,y día con día
+      
+      Si te contara de lo bien que te ves con tu forma de caminar , tus gestos ….
+      Cuando te subes las mangas de tu chamarra y quedan a la altura de tus codos , eso es muy lindo .
+      Cuando me miras.
+      Cuando haces berrinche .
+      
+      Creme que nunca las palabras que diga van a poder describir todo absolutamente todo lo que yo siento por ti mi corazón .
+      
+      Eres lo más precioso que tengo .
+      
+      Eres hermoso y eso nunca lo dudes .
+      
+      Eres la única persona a la cual me gustaría
+      conocer una y mil veces por primera vez. 
+      <img class="flechita" src="flechita.png"></div>
+  
+
+    <div class="page">Eres mi eternidad,te amo bebé</div>
+   
+    
+    
+  
+  </div>
+</div>
+<style>
+    .book {
+  transition: opacity 0.4s 0.2s;
+}
+
+.page {
+  width: 30vw;
+  height: 44vw;
+  background-color: #111111;
+  float: left;
+  margin-bottom: 0.5em;
+  background: left top no-repeat;
+  background-size: cover;
+}
+.aww{
+  width: 300px;
+  height: 300px;
+  position:center;
+  
+}
+.flechita{
+  width: 80px;
+  height: 80px;
+  position:absolute;
+  right: inherit;
+}
+.flechita2{
+  width: 50px;
+  height: 50px;
+  position:absolute;
+  right: inherit;
+}
+.page:nth-child(even) {
+  clear: both;
+}
+.book {
+  perspective: 250vw;
+}
+.book .pages {
+  width: 60vw;
+  height: 44vw;
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 4px;
+  
+}
+.book .page {
+  float: none;
+  clear: none;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 30vw;
+  height: 44vw;
+  transform-origin: 0 0;
+  transition: transform 1.4s;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+  background-color: #f0f0f0;
+}
+.book .page:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0);
+ 
+  z-index: 2;
+}
+.book .page:nth-child(odd) {
+  pointer-events: all;
+  transform: rotateY(0deg);
+  right: 0;
+  border-radius: 0 4px 4px 0;
+  background-image: linear-gradient(to right, rgba(0,0,0,.15) 0%, rgba(0,0,0,0) 10%);
+}
+.book .page:nth-child(odd):hover {
+  transform: rotateY(-15deg);
+}
+.book .page:nth-child(odd):hover:before {
+  background: rgba(0, 0, 0, 0.03);
+}
+.book .page:nth-child(odd):before {
+  background: rgba(0, 0, 0, 0);
+}
+.book .page:nth-child(even) {
+  pointer-events: none;
+  transform: rotateY(180deg);
+  transform-origin: 100% 0;
+  left: 0;
+  border-radius: 4px 0 0 4px;
+  border-color: black;
+  background-image: linear-gradient(to left, rgba(0,0,0,.12) 0%, rgba(0,0,0,0) 10%);
+}
+.book .page:nth-child(even):before {
+  background: rgba(0, 0, 0, 0.2);
+}
+.book .page.grabbing {
+  transition: none;
+}
+.book .page.flipped:nth-child(odd) {
+  pointer-events: none;
+  transform: rotateY(-180deg);
+}
+.book .page.flipped:nth-child(odd):before {
+  background: rgba(0, 0, 0, 0.2);
+}
+.book .page.flipped:nth-child(even) {
+  pointer-events: all;
+  transform: rotateY(0deg);
+}
+.book .page.flipped:nth-child(even):hover {
+  transform: rotateY(15deg);
+}
+.book .page.flipped:nth-child(even):hover:before {
+  background: rgba(0, 0, 0, 0.03);
+}
+.book .page.flipped:nth-child(even):before {
+  background: rgba(0, 0, 0, 0);
+}
+*,
+* :before,
+*:after {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-image: url("flores.jpeg");
+
+  background-size: cover;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0;
+  line-height: 1.5em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.page:nth-child(odd){
+  background-position: right top;
+}
+
+
+</style>
+<script>
+      var pages = document.getElementsByClassName('page');
+  for(var i = 0; i < pages.length; i++)
+    {
+      var page = pages[i];
+      if (i % 2 === 0)
+        {
+          page.style.zIndex = (pages.length - i);
+        }
+    }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    for(var i = 0; i < pages.length; i++)
+      {
+       
+        pages[i].pageNum = i + 1;
+        pages[i].onclick=function()
+          {
+            if (this.pageNum % 2 === 0)
+              {
+                this.classList.remove('flipped');
+                this.previousElementSibling.classList.remove('flipped');
+              }
+            else
+              {
+                this.classList.add('flipped');
+                this.nextElementSibling.classList.add('flipped');
+              }
+           }
+        }
+  })
+</script>
+</body>
+<audio src="uno.mp3" autoplay="autoplay" loop="loop"></audio>
+</html>
