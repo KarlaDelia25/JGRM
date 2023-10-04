@@ -3,57 +3,426 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bebé te amoooooooooooooooooooooooooooooooooooooooo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>jgrm</title>
+
 </head>
-
 <body>
-    <h1>Ábre el regalo bebé</h1>
-    <div class="cajita">
-        <div class="gift">
-        <input id='click' type='checkbox'>
-        <label class='click' for='click'></label>
-        <div class="mensajituu">Bebé,un año juntos!!!!
-            Eri mi corazón hermoso.
-            Gracias por hacerme muy feliz bebé.
-            No sabes cuanto amo que seas tú bebé.
-            A pesar de todo,te sigo elegiendo a ti bebé.
-            
-        </div>
-             <div class="mangos">
-            <div class="mango1"></div>
-            <div class="mango2"></div>
-            <div class="mango3"></div>
-            <div class="mango4"></div>
-            <div class="mango5"></div>
-            <div class="mango6"></div>
-          </div>
-          </div>
-      </div>
-
-      <img class="gif" src="chihiro.gif" alt="Gifcito"> 
+   <h1>Un año juntos bebé</h1>
+   <h3>06/10/22</h3>
+    <div id='teamo1'>
+        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48" fill='white'><path d="M468-240q-96-5-162-74t-66-166q0-100 70-170t170-70q97 0 166 66t74 163l-63-20q-11-64-60-106.5T480-660q-75 0-127.5 52.5T300-480q0 67 42.5 116.5T449-303l19 63ZM821-60 650-231 600-80 480-480l400 120-151 50 171 171-79 79Z"/></svg>
+    </div>
+    <div id='teamo2'>
+    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48" fill='white'><path d="M468-240q-96-5-162-74t-66-166q0-100 70-170t170-70q97 0 166 66t74 163l-63-20q-11-64-60-106.5T480-660q-75 0-127.5 52.5T300-480q0 67 42.5 116.5T449-303l19 63Zm48 158q-9 1-18 1.5t-18 .5q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 9-.5 18t-1.5 18l-58-18v-18q0-142-99-241t-241-99q-142 0-241 99t-99 241q0 142 99 241t241 99h18l18 58Zm305 22L650-231 600-80 480-480l400 120-151 50 171 171-79 79Z"/></svg>
+    </div>
+    <canvas id="fireworkCanvas"></canvas>
+     <img class="gif1" src="chihirituuu.gif" alt="Gifcito"> 
       <img class="gif2" src="noface.gif" alt="Gifcito"> 
      
+    
    
-
+</div>
+      <style>
+      body {
+	background: black url(https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/7806106/full-moon-clipart-md.png) no-repeat;
+	background-position: 20vw 25vh;
+	background-size: 140px auto;
+	overflow: hidden;
+      }
       
-      
-        <h3>Dale click a la cartita,bebé</h3>
-        <a href="061022.html">
-        <img src="botoncituu.GIF"
-        alt="no aparece esta cosa " width="100" height="100" />
-      </a> 
     
 
 
+      
+.gif1{
+    position: absolute;
+	width: 300px;
+	height:300px;
+	left:300px;
+	bottom:100px;
+  }
+  .gif2{
+    position:absolute;
+	width: 350px;
+	height:350px;
+	left:800px;
+	bottom:100px;
+  }
 
 
-      <div class="firework"></div>
-<div class="firework"></div>
-<div class="firework"></div>
+h1{
+    position:absolute;
+    left: 450px;
+	font-size: 50px;
+    color: aliceblue;
+	font-family: sans-serif;
+	letter-spacing: 2px;
+}
+h3{
+    position:absolute;
+    top: 450px;
+	font-size: 50px;
+    color: aliceblue;
+	font-family: sans-serif;
+	letter-spacing: 2px;
+}
+
+a {
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+	display: inline-block;
+	margin: 20px;
+	font-size: 12px;
+	font-family: sans-serif;
+	letter-spacing: 2px;
+}
+a:link {
+	color: white;
+}
+a:visited {
+	color: white;
+}
+a:hover {
+	color: white;
+}
+a:active {
+	color: white;
+}
+
+#teamo1, #teamo2 {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+#icon2 {
+	-webkit-animation: 'change-icon' 0.5s linear infinite alternate;
+}
 
 
+
+canvas {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+}
+      </style>
+      <script>
+        const particleCount = 150;
+const colors = ["#f9ff44", "#83fffb", "#54ff44", "Pink", "Blue", "Orange", "#ae3dff"];
+const particles = [];
+
+const canvas = document.getElementById('fireworkCanvas');
+const ctx = canvas.getContext('2d');
+
+class Particle {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.radius = Math.random() * 2.5 + 1;
+		this.velocity = {
+      x: Math.random() * 1.4 - 1.4/2,
+      y: Math.random() * 1.4 - 1.4/2
+    };
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+		ctx.globalAlpha = 0.6;
+    ctx.closePath();
+    ctx.fill();
+  }
+  update() {
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
+    this.radius -= 0.01;
+    this.draw();
+  }
+}
+
+function createFirework(x, y) {
+	const color = colors[Math.floor(Math.random() * colors.length)];
+  for (let i = 0; i < particleCount; i++) {
+    const particle = new Particle(x, y, color);
+    particles.push(particle);
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < particles.length; i++) {
+    particles[i].update();
+    if (particles[i].radius <= 0.9 || Math.pow(particles[i].velocity.x, 2) + Math.pow(particles[i].velocity.y, 2) > 0.5) {
+      particles.splice(i, 1);
+      i--;
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+canvas.addEventListener('click', function(event) {
+	canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+  createFirework(mouseX, mouseY);
+});
+
+function createRandomFirework() {
+	canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+	createFirework(Math.random()*window.innerWidth, Math.random()*window.innerHeight);
+}
+
+animate();
+
+setInterval(function() {
+  if(document.hasFocus())
+		createRandomFirework();
+	}
+, 2700-window.innerWidth);
+      </script>
+      //modal
+      <div class="page">
+        <div class="page__container">
+          <a href="#popup-article" class="open-popup">Click aquí bebé</a>
+        </div>
+      </div>
+      <div id="popup-article" class="popup">
+        <div class="popup__container">
+          <a href="#" class="popup__close">
+            <span class="screen-reader">Cerrar</span>
+          </a>  
+          <div class="popup__content">
+            <br>
+            <br>
+            <h1 class="popup__title r-title">¿Bonito ?
+                Bonito es tenerte a ti bebé</h1>
+            <p> Tus ojitos tan bellos,que desde te conocí pude notar lo bonito que son.
+                Esa mirada tan tierna,ese hoyuelo que espantó mi rutina ,tu voz tan dulce , tan tranquilizante.
+                Tu abrazado a mi , mientras nuestros corazones se empezaban a conocer y conectar .</p>
+
+            <p> Poco a poco fui acercándome más y más a tus bellos detalles . Detalles los cuales brillan a más no poder , brillan mucho.Tanto, que sin estar algunos días cerca de ti , me hacen sonreír.
+                Me hacen derramar lágrimas de felicidad , de que tengo a un tesoro conmigo , a alguien a quien le brilla la sonrisa , alguien que para mí tiene los ojos más bonitos de este universo .
+                Esos ojos dónde encuentro paz,así como esa nariz tan linda y esos labios esponjosos ,que provocan que quiera besarlos cada segundo;ese cuerpo tan más hermoso ,así como tu cabello brilloso y lacio .
+                Esos gestos , esa forma tuya de ser ilumina mi corazón que a pesar de lo que pasamos , te seguía y te sigo eligiendo segundo por segundo,minuto por minuto,y día con día.
+            </p>    
+               <p> Si te contara de lo bien que te ves con tu forma de caminar , tus gestos ….
+                cuando te subes las mangas de tu chamarra y quedan a la altura de tus codos , eso es muy lindo .
+                <p> Cuando me miras y cuando haces brrinches,para mi es arte.</p>
+                
+                <p>Creme que nunca las palabras que diga van a poder describir todo absolutamente todo lo que yo siento por ti mi corazón .
+                
+                Eres lo más precioso que tengo muy hermoso y eso nunca lo dudes.No dudes que eres la única persona a la cual me gustaría
+                conocer una y mil veces por primera vez. </p>
+                <img id="aww" src="awww.jpg">
+           
+          </div>
+        </div>
+      </div>
+    
+    <style>
+    .r-title{
+        margin-top: var(--rTitleMarginTop, 0) !important;
+        margin-bottom: var(--rTitleMarginBottom, 0) !important;
+    }
+    
+    
+    
+    .screen-reader{
+      width: var(--screenReaderWidth, 1px) !important;
+      height: var(--screenReaderHeight, 1px) !important;
+      padding: var(--screenReaderPadding, 0) !important;
+      border: var(--screenReaderBorder, none) !important;
+    
+      position: var(--screenReaderPosition, absolute) !important;
+      clip: var(--screenReaderClip, rect(1px, 1px, 1px, 1px)) !important;
+      overflow: var(--screenReaderOverflow, hidden) !important;
+    }
+    
+    
+    
+    
+    .popup:not(:target){
+      display: none;
+    }
+    
+    .popup:target{
+      width: 100%;
+      height: 100vh;
+      
+      display: flex;
+     
+      position: fixed;
+      top: 0;
+      right: 0;  
+    }
+    
+    .popup::before{
+      content: "";
+      box-sizing: border-box;
+      width: 100%;
+      background-color: #fff;
+    
+      position: fixed;
+      left: 0;
+      top: 50%;
+    }
+    
+    .popup::after{
+      content: "";
+      width: 0;
+      height: 2px;
+      background-color: #f0f0f0;
+    
+      position: absolute;
+      top: 50%;
+      left: 0;
+      margin-top: -1px;
+    }
+    
+    .popup__container{
+      box-sizing: border-box;  
+      padding: 5% 15%;
+    
+      height: calc(100vh - 40px); /* 1 */
+      margin: auto; /* 1 */
+      overflow: auto; /* 1 */
+      overscroll-behavior: contain; /* 1 */
+    }
+    
+    .popup__title{
+      --rTitleMarginBottom: 1.5rem;
+      font-size: 1.5rem;
+      color: black;
+      position: absolute;
+      top: 50px;
+      left: 190px;
+    }
+    
+    .popup__close{
+      width: 2rem;
+      height: 2rem;
+    
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+    
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+    }
+    .aww{
+     position: relative;
+     width:10px ;
+     height:10px ;
+    }
+    
+    /*
+    animaciónnnnnnn
+    */
+    
+    .popup::before{
+      will-change: height, top;
+      animation: open-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) .65s both;
+    }
+    
+    .popup::after{
+      will-change: width, opacity;
+      animation: line-animation .6s cubic-bezier(0.83, 0.04, 0, 1.16) both;
+    }
+    
+    @keyframes line-animation{
+    
+      0%{
+        width: 0;
+        opacity: 1;
+      }
+    
+      99%{
+        width: 100%;
+        opacity: 1;
+      }
+    
+      100%{
+        width: 100%;
+        opacity: 0;
+      }  
+    }
+    
+    @keyframes open-animation{
+    
+      0%{
+        height: 0;
+        top: 50%;
+      }
+    
+      100%{
+        height: 100vh;
+        top: 0;
+      }
+    }
+    
+    .popup__container{
+      animation: fade .5s ease-out 1.3s both;
+    }
+    
+    @keyframes fade{
+    
+      0%{
+        opacity: 0;
+      }
+    
+      100%{
+        opacity: 1;
+      }
+    }
+    
+    
+    
+    
+    
+    p{
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    p:nth-child(n+2){
+      margin-top: 1rem;
+    }
+    
+    .open-popup{
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: .75rem 1.25rem;
+      border: 1px solid;
+    }
+    
+    .page{
+      min-height: 100vh;
+      display: flex;
+    }
+    
+    .page__container{
+      max-width: 100px;
+      padding-left: .75rem;
+      padding-right: .75rem;  
+      margin: auto;
+    }
+    
+    </style>
 </body>
+
+
+
+
 <audio src="dos.mp3" autoplay="autoplay" loop="loop"></audio>
 
-</html>
+  </html>
